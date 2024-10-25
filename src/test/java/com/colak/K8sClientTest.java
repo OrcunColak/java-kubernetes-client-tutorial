@@ -13,7 +13,7 @@ class K8sClientTest {
     @Test
     void getAllPodList() {
         K8sClient k8sClient = new K8sClient();
-        V1PodList podList = k8sClient.getAllPodList();
+        V1PodList podList = k8sClient.getAllPodList("test-scale-ns");
         for (V1Pod pod : podList.getItems()) {
             V1ObjectMeta metadata = pod.getMetadata();
             assert metadata != null;
@@ -30,5 +30,12 @@ class K8sClientTest {
             assert metadata != null;
             log.info("{} : {}", metadata.getNamespace(), metadata.getName());
         }
+    }
+
+    @Test
+    void getReplicas() {
+        K8sClient k8sClient = new K8sClient();
+        int replicas = k8sClient.getReplicas("nginx", "test-scale-ns");
+        log.info("nginx replicas {} : ", replicas);
     }
 }

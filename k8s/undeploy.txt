@@ -1,0 +1,6 @@
+kubectl delete all -l k8-tutorial -n test-scale-ns
+
+kubectl delete namespace test-scale-ns
+kubectl delete rolebinding test-scale-rb
+
+
